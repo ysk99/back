@@ -40,7 +40,7 @@
 
 <script>
 import { getToken } from '@/utils/auth'
-import { formstore } from '@/api/form'
+import { hotsearch_add } from '@/api/hotsearch'
 
 export default {
   data() {
@@ -63,23 +63,15 @@ export default {
   methods: {
     onSubmit() {
       this.$message('正在提交axios请求')
-      formstore(this.form).then(response => {
+      hotsearch_add(this.form).then(response => {
         console.log(response.data)
         this.listLoading = false
         // console.log('保存成功')
         this.$message('保存成功')
-          this.temp = {
+          this.form = {
             id: undefined,
             uid: '',
             name: ''
-            // address: '',
-            // files_address: '',
-            // date2: '',
-            // files: [],
-            // delivery: false,
-            // type: [],
-            // resource: '',
-            // desc: ''
           }
       })
 

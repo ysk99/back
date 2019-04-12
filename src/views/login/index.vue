@@ -58,8 +58,8 @@ export default {
     }
     return {
       loginForm: {
-        email: 'ysk9@qq.com',
-        password: '12345632'
+        email: 'admin@test.com',
+        password: 'toptal'
       },
       loginRules: {
         email: [{ required: true, trigger: 'blur', validator: validateemail }],

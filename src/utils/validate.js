@@ -3,7 +3,7 @@
  */
 
 export function isvalidemail(str) {
-  const valid_map = ['ysk9@qq.com', 'editor']
+  const valid_map = ['admin@test.com', 'editor']
   return valid_map.indexOf(str.trim()) >= 0
 }
 

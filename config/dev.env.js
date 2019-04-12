@@ -4,5 +4,5 @@ const prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-    BASE_API: '"http://localhost/api/public/index.php/"',
+    BASE_API: '"http://localhost/newengine/public/index.php"',
 })

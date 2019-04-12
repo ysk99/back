@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function formstore(formdata) {
+export function jiexiapi_add(formdata) {
   return request({
-    url: 'api/hotsearchs_add',
+    url: 'api/jiexiapi_add',
     method: 'post',
     data: {
       formdata
@@ -10,16 +10,17 @@ export function formstore(formdata) {
   })
 }
 
-export function getlinklist() {
+export function getList() {
+  // const token = getToken()
   return request({
-    url: 'api/movie/index',
+    url: 'api/jiexiapi_query',
     method: 'get'
   })
 }
 
-export function deleteMovie(id) {
+export function jiexiapi_delete(website) {
   return request({
-    url: 'api/newmsg/delete/'+id,
+    url: 'api/jiexiapi_delete?website='+website,
     method: 'delete'
   })
 }

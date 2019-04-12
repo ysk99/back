@@ -1,5 +1,6 @@
 <template>
   <div class="app-container">
+        <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit" @click="jump">新增</el-button>
     <el-table
       v-loading="listLoading"
       :data="list"
@@ -10,15 +11,15 @@
       <el-table-column align="center" label="ID" width="95">
         <template slot-scope="scope">
           <!-- {{ scope.$index }} -->
-          {{ scope.row.id }}
+          {{ scope.row.uid }}
         </template>
       </el-table-column>
       <el-table-column label="Title" width="110" align="center">
         <template slot-scope="scope">
-          {{ scope.row.title }}
+          {{ scope.row.name }}
         </template>
       </el-table-column>
-      <el-table-column label="Body">
+      <!-- <el-table-column label="Body">
         <template slot-scope="scope">
           <template v-if="scope.row.edit">
             <el-input v-model="scope.row.body" class="edit-input" size="small"/>
@@ -26,18 +27,18 @@
           </template>
           <span v-else>{{ scope.row.body }}</span>
         </template>
-      </el-table-column>
+      </el-table-column> -->
       <!-- <el-table-column class-name="status-col" label="Status" width="110" align="center">
         <template slot-scope="scope">
           <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
         </template>
       </el-table-column> -->
-      <el-table-column align="center" prop="created_at" label="Created_at" width="200">
+      <!-- <el-table-column align="center" prop="created_at" label="Created_at" width="200">
         <template slot-scope="scope">
           <i class="el-icon-time"/>
           <span>{{ scope.row.created_at }}</span>
         </template>
-      </el-table-column>
+      </el-table-column> -->
       <el-table-column align="center" label="Actions" width="120">
         <template slot-scope="scope">
           <el-button v-if="scope.row.edit" type="success" size="small" icon="el-icon-circle-check-outline" @click="confirmEdit(scope.row)">Ok</el-button>
@@ -80,6 +81,13 @@ export default {
         console.log(response.data)
         this.listLoading = false
       })
+    },
+    jump(){
+    //this.$router.push("/cart")
+    //传递的参数用{{ $route.query.goodsId }}获取
+    this.$router.push({path: '/form/index'})
+    //this.$router.go(-2)
+    //后退两步
     },
     cancelEdit(row) {
       // row.body = row.body

@@ -38,6 +38,50 @@ export const constantRouterMap = [
   },
 
   {
+    path: '/hotsearch',
+    component: Layout,
+    redirect: '/hotsearch/index',
+    name: 'hotsearch',
+    meta: { title: '热搜', icon: 'example' },
+    children: [
+      {
+        path: 'index',
+        name: 'Index',
+        component: () => import('@/views/hotsearch/index'),
+        meta: { title: 'Index', icon: 'documentation' }
+      },
+      {
+        path: 'hotsearch_add',
+        name: 'Hotsearch_add',
+        component: () => import('@/views/hotsearch/hotsearch_add'),
+        meta: { title: 'Hotsearch_add', icon: 'excel' }
+      }
+    ]
+  },
+
+  {
+    path: '/vipjx',
+    component: Layout,
+    redirect: '/vipjx/index',
+    name: 'vipjx',
+    meta: { title: 'VIp解析接口', icon: 'example' },
+    children: [
+      {
+        path: 'index',
+        name: 'Index',
+        component: () => import('@/views/vipjx/index'),
+        meta: { title: 'Index', icon: 'documentation' }
+      },
+      {
+        path: 'vipjx_add',
+        name: 'vipjx_add',
+        component: () => import('@/views/vipjx/vipjx_add'),
+        meta: { title: 'vipjx_add', icon: 'excel' }
+      }
+    ]
+  },
+
+  {
     path: '/example',
     component: Layout,
     redirect: '/example/table',

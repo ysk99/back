@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function formstore(formdata) {
+export function hotsearch_add(formdata) {
   return request({
     url: 'api/hotsearchs_add',
     method: 'post',
@@ -10,16 +10,17 @@ export function formstore(formdata) {
   })
 }
 
-export function getlinklist() {
+export function getList() {
+  // const token = getToken()
   return request({
-    url: 'api/movie/index',
+    url: 'api/hotsearchs_query',
     method: 'get'
   })
 }
 
-export function deleteMovie(id) {
+export function hotsearch_delete(id) {
   return request({
-    url: 'api/newmsg/delete/'+id,
+    url: 'api/hotsearchs_delete?uid='+id,
     method: 'delete'
   })
 }

@@ -4,7 +4,7 @@ import request from '@/utils/request'
 export function getList() {
   // const token = getToken()
   return request({
-    url: 'api/articles',
+    url: 'api/hotsearchs_query',
     method: 'get'
   })
 }
