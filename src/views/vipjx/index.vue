@@ -35,16 +35,6 @@
           {{ scope.row.recommend }}
         </template>
       </el-table-column>
-      <!-- <el-table-column label="地址" width="200" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.address }}
-        </template>
-      </el-table-column>
-      <el-table-column label="描述" align="center">
-        <template slot-scope="scope">
-          {{ scope.row.desc }}
-        </template>
-      </el-table-column> -->
       <el-table-column align="center" label="Actions" width="250">
         <template slot-scope="scope">
           <!-- <el-button v-if="scope.row.edit" type="success" size="small" icon="el-icon-circle-check-outline" @click="confirmEdit(scope.row)">Ok</el-button> -->
