@@ -1,24 +1,24 @@
 <template>
   <div class="app-container">
     <el-form ref="form" :model="form" label-width="120px">
-      <el-form-item label="网站名">
-        <el-input v-model="form.website"/>
-      </el-form-item>
-      <!-- <el-form-item label="名称">
-        <el-select v-model="form.leibie" placeholder="请选择电影类别">
-          <el-option label="在线观看" value="online"/>
-          <el-option label="影视下载" value="download"/>
-        </el-select>
-      </el-form-item> -->
-      <el-form-item label="地址">
-        <el-input placeholder="请输入内容" v-model="form.url" />
-      </el-form-item>
-      <el-form-item label="其他">
-        <el-input placeholder="请输入内容" v-model="form.others" />
-      </el-form-item>
-      <el-form-item label="推荐指数">
-        <el-input placeholder="请输入内容" v-model="form.recommend" />
-      </el-form-item>
+      <el-form-item label="网站名" prop="website">
+          <el-input v-model="form.website"/>
+        </el-form-item>
+        <el-form-item label="URL" prop="url">
+          <el-input v-model="form.url"/>
+        </el-form-item>
+        <el-form-item label="进度1" prop="others">
+          <el-input v-model="form.schedule1"/>
+        </el-form-item>
+        <el-form-item label="进度2" prop="others">
+          <el-input v-model="form.schedule2"/>
+        </el-form-item>
+        <el-form-item label="类型" prop="others">
+          <el-input v-model="form.leixing"/>
+        </el-form-item>
+        <el-form-item label="推荐指数" prop="recommend">
+          <el-input v-model="form.recommend"/>
+        </el-form-item>
       <!-- <el-form-item label="图片">
         <el-upload
           :on-preview="handlePreview"
@@ -45,7 +45,7 @@
 
 <script>
 import { getToken } from '@/utils/auth'
-import { jiexiapi_add } from '@/api/vipjx'
+import { clewers_add } from '@/api/clewers'
 
 export default {
   data() {
@@ -53,8 +53,10 @@ export default {
       form: {
         website: '',
         url: '',
-        others: '',
-        recommend: ''
+        leixing: '',
+        schedule1: '',
+        recommend: '',
+        schedule2: ''
       },
       Token:'Bearer ' + getToken()
     }
@@ -62,7 +64,7 @@ export default {
   methods: {
     onSubmit() {
       this.$message('正在提交axios请求')
-      jiexiapi_add(this.form).then(response => {
+      clewers_add(this.form).then(response => {
         console.log(response.data)
         this.listLoading = false
         // console.log('保存成功')
@@ -71,8 +73,10 @@ export default {
             id: undefined,
             website: '',
             url: '',
-            others: '',
-            recommend: ''
+            leixing: '',
+            schedule1: '',
+            recommend: '',
+            schedule2: ''
           }
       })
 

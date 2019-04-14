@@ -25,9 +25,19 @@
           {{ scope.row.url }}
         </template>
       </el-table-column>
-      <el-table-column label="其他" width="110" align="center">
+      <el-table-column label="进度1" width="110" align="center">
         <template slot-scope="scope">
-          {{ scope.row.others }}
+          {{ scope.row.schedule1 }}
+        </template>
+      </el-table-column>
+      <el-table-column label="进度2" width="110" align="center">
+        <template slot-scope="scope">
+          {{ scope.row.schedule2 }}
+        </template>
+      </el-table-column>
+      <el-table-column label="类型" width="110" align="center">
+        <template slot-scope="scope">
+          {{ scope.row.leixing }}
         </template>
       </el-table-column>
       <el-table-column label="推荐指数" width="110" align="center">
@@ -50,6 +60,7 @@
           <!-- <el-button v-if="scope.row.edit" type="success" size="small" icon="el-icon-circle-check-outline" @click="confirmEdit(scope.row)">Ok</el-button> -->
           <!-- <el-button v-else type="primary" size="small" icon="el-icon-edit" @click="chengeEdit(scope.row)">表内编辑</el-button> -->
           <el-button type="primary" size="small" @click="handleUpdate(scope.row)">弹窗编辑</el-button>
+          <el-button type="primary" size="small" @click="update(scope.row)">更新</el-button>
           <el-button type="primary" size="small" @click="handleDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
@@ -63,8 +74,14 @@
         <el-form-item label="URL" prop="url">
           <el-input v-model="temp.url"/>
         </el-form-item>
-        <el-form-item label="其他" prop="others">
-          <el-input v-model="temp.others"/>
+        <el-form-item label="进度1" prop="others">
+          <el-input v-model="temp.schedule1"/>
+        </el-form-item>
+        <el-form-item label="进度2" prop="others">
+          <el-input v-model="temp.schedule2"/>
+        </el-form-item>
+        <el-form-item label="类型" prop="others">
+          <el-input v-model="temp.leixing"/>
         </el-form-item>
         <el-form-item label="推荐指数" prop="recommend">
           <el-input v-model="temp.recommend"/>
@@ -81,7 +98,7 @@
 </template>
 
 <script>
-import { getList, jiexiapi_add, jiexiapi_delete } from '@/api/vipjx'
+import { getList, clewers_add, clewers_delete, updatesome } from '@/api/clewers'
 
 export default {
   filters: {
@@ -102,9 +119,11 @@ export default {
       temp: {
         id: undefined,
         website: '',
-        others: '',
+        url: '',
+        leixing: '',
+        schedule1: '',
         recommend: '',
-        url: ''
+        schedule2: ''
 
       },
       rules: {
@@ -135,7 +154,7 @@ export default {
     jump(){
     //this.$router.push("/cart")
     //传递的参数用{{ $route.query.goodsId }}获取
-    this.$router.push({path: '/vipjx/vipjx_add'})
+    this.$router.push({path: '/clewers/clewers_add'})
     //this.$router.go(-2)
     //后退两步
     },
@@ -155,9 +174,11 @@ export default {
       this.temp = {
         id: undefined,
         website: '',
-        others: '',
+        url: '',
+        leixing: '',
+        schedule1: '',
         recommend: '',
-        url: ''
+        schedule2: ''
       }
     },
     chengeEdit(row) {
@@ -179,10 +200,17 @@ export default {
         this.$refs['dataForm'].clearValidate()
       })
     },
+    update(row) {
+      this.temp = Object.assign({}, row) // copy obj
+      console.log(this.temp.website)
+      updatesome(this.temp.url).then(response =>{
+        console.log(response.data)
+      })
+    },
     updatedata(){
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
-          jiexiapi_add(this.temp).then(response => {
+          clewers_add(this.temp).then(response => {
             console.log('修改成功')
             // this.data = response.data
             this.resetTemp()
@@ -217,7 +245,7 @@ export default {
     },
     handleDelete(row) {
         // this.listLoading = true
-        jiexiapi_delete(row.website).then(response => {
+        clewers_delete(row.website).then(response => {
         console.log(response.data)
         // 确保后台更新后，前端页面同步更新
         for (const v of this.list) {

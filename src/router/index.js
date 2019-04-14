@@ -82,6 +82,28 @@ export const constantRouterMap = [
   },
 
   {
+    path: '/clewers',
+    component: Layout,
+    redirect: '/clewers/index',
+    name: 'clewers',
+    meta: { title: '在线数据更新', icon: 'example' },
+    children: [
+      {
+        path: 'index',
+        name: 'Index',
+        component: () => import('@/views/clewers/index'),
+        meta: { title: 'Index', icon: 'documentation' }
+      },
+      {
+        path: 'clewers_add',
+        name: 'clewers_add',
+        component: () => import('@/views/clewers/clewers_add'),
+        meta: { title: 'clewers_add', icon: 'excel' }
+      }
+    ]
+  },
+
+  {
     path: '/example',
     component: Layout,
     redirect: '/example/table',
